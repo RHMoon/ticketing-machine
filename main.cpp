@@ -349,30 +349,6 @@ int payment(int x){
 	return p;
 }
 
-/*void exch(int x){
-	fstream me("log.dat",fstream::app);
-	int k=0;
-	string F[100][3], temp[100];
-	
-	
-	if(me.is_open()){
-		while(!me.eof()){
-			me>>temp[0];
-			k++;
-		}	
-		
-		if(k=0){
-			me<<"BookingCode"<<"\t  City"<<"\t\tTime";
-		}
-	
-		me.close();
-		bcode(x);
-	}
-	else{
-		cout << "File can't be opened'";
-	}
-}*/
-
 void bcode(int x){
 	fstream me("log.dat",fstream::app);
 	//ifstream ime("log.dat");
@@ -419,13 +395,7 @@ void bcode(int x){
 	}
 	
 	if(me.is_open()){
-		//ime.open("log.dat");
-		//if (!ime){
-		//	me << "Booking Code" <<"\t  "<<"City"<<"\t\tTime";
-		//	goto g;
-		//}
-		//ime.close();
-		g:for (int r=temp-x;r<a;r++){
+		for (int r=temp-x;r<a;r++){
 			me<<endl<<A[r];
 			if (city=="Jakarta"){
 				me<< "\t "<<city<<"\t"<<M[t][s]<<endl;
@@ -450,36 +420,36 @@ void bcode(int x){
 }
 void bcheck(){
 	ifstream book;
-	string C[100],p;
-	int c=0;
+	string C[100][3],p;
+	int c=0,g=0;
 	book.open("log.dat");
 	
 	while (!book.eof()) {
-		book >> C[c];
-		c++;
+		while(g<3){
+			book >> C[c][g];
+			g++;	
+		}
+		g=0;c++;
 	}
+	
 	book.close();
 	
-	e:cout << "Please enter your booking code " << endl << endl;
+	cout << "Please enter your booking code " << endl << endl;
 	cin>>p;
-				
+	
 	for (i=0;i<c;i++){
-		c:if(p == C[i]){
-			cout << "You have check in with booking code "<<p;
-			goto d;
+		if(p == C[i][0]){
+			cout << endl << "You have check in with booking code "<<p;
+			break;
 		}
 		else{
 			if (i==c-1){
 				pause("nlist");
 				break;
 			}
-			else{
-				i++;
-				goto c;
-			}
 		}
 	}
-	d:cout<< endl << endl ; pause(" "); system("CLS");
+	cout<< endl << endl ; pause(" "); system("CLS");
 }
 void timeDis(int x, int *p){//display time schedule option when buying ticket
 	int r=0;
