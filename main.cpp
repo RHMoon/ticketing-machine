@@ -553,9 +553,6 @@ void pause(string opt){//in exchage of system("PAUSE")
 	}
 	 if(opt=="nlist"){
      cout <<"\nYour booking code is not on the list! Please try again!";
-     cout << "\n\nPress any key to continue . . .";
-     cin.get();
-     cin.get();
 	}
 	//
 	if(opt==" "){
